@@ -1,10 +1,12 @@
 Running frontend:
-cd frontend
-npm install
-npm run dev
+- Pick the client directory: `cd frontend`
+- Install dependencies: `npm install`
+- Run the app `npm run dev`
 
 
 Running backend:
- - Make sure flask is installed (pip install flask)
- - Make sure to istall Flask-CORS (pip install Flask -CORS)
+- Pick the server directory: `cd backend`
+- Make sure flask is installed (`pip install flask` for Windows and `pip3 install flask` for Mac)
+- Make sure to install Flask-CORS (`pip install Flask-CORS` for Windows and `pip3 install Flask-CORS` for Mac)
+- Run the server: `python app.py` for Windows and `python3 app.py` for Mac
  
