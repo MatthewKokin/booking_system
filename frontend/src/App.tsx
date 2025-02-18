@@ -1,5 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+
+// Screens
+import Onboarding from './pages/Onboarding';
+import Login from './pages/Login';
+import Register from './pages/Register';
+
+// Components
 import Navbar from './components/Navbar';
 import PropertyCard from './components/PropertyCard';
 import Footer from './components/Footer';
@@ -45,8 +52,9 @@ const App: React.FC = () => {
     }
   ];
 
-  // Use state to manage property list
-  const [properties] = useState<Property[]>(sampleProperties);
+  // State to track user authentication
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
 
   // *** BACKEND LINK NEEDED HERE *** //
   // const [properties, setProperties] = useState<Property[]>([]);
@@ -66,15 +74,31 @@ const App: React.FC = () => {
   // }, []);
 
   return (
-    <div className="App">
-      <Navbar />
-      <div className="property-list">
-        {properties.map((property) => (
-          <PropertyCard key={property.id} property={property} />
-        ))}
+    <Router>
+      <div className="App">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Onboarding />} />
+          <Route path="/login" element={<Login setAuth={setIsAuthenticated} />} />
+          <Route path="/register" element={<Register setAuth={setIsAuthenticated} />} />
+          <Route 
+            path="/properties" 
+            element={
+              isAuthenticated ? (
+                <div className="property-list">
+                  {sampleProperties.map((property) => (
+                    <PropertyCard key={property.id} property={property} />
+                  ))}
+                </div>
+              ) : (
+                <Navigate to="/" replace />
+              )
+            }
+          />
+        </Routes>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </Router>
   );
 };
 

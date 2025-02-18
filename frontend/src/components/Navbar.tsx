@@ -6,7 +6,7 @@ const Navbar: React.FC = () => {
       <h1>Airbnb Clone</h1>
       <ul>
         <li><a href="/">Home</a></li>
-        <li><a href="/listings">Listings</a></li>
+        <li><a href="/register">Register</a></li>
         <li><a href="/login">Login</a></li>
       </ul>
     </nav>
