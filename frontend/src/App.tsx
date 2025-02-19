@@ -16,7 +16,9 @@ import './App.css';
 import cabinImage from './assets/cabin.webp';
 import apartmentImage from './assets/nyc.jpg';
 import beachHouseImage from './assets/malibu.avif';
-
+import alpsImage from './assets/alps.jpg';
+import comoImage from './assets/lakecomo.jpg';
+import saImage from './assets/southafrica.jpg';
 
 interface Property {
   id: number;
@@ -49,12 +51,29 @@ const App: React.FC = () => {
       location: "Malibu, CA",
       price: 350,
       imageUrl: beachHouseImage
+    }, {
+      id: 4,
+      title: "Ski Chalet in the Alps",
+      location: "Alps, FR",
+      price: 500,
+      imageUrl: alpsImage
+    }, {
+      id: 5,
+      title: "Luxury villa with Ocean View",
+      location: "Cape Town, SA",
+      price: 400,
+      imageUrl: saImage
+    }, {
+      id: 6,
+      title: "Beautiful Lake Como villa",
+      location: "Como, IT",
+      price: 350,
+      imageUrl: comoImage
     }
   ];
 
   // State to track user authentication
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-
 
   // *** BACKEND LINK NEEDED HERE *** //
   // const [properties, setProperties] = useState<Property[]>([]);
@@ -96,7 +115,7 @@ const App: React.FC = () => {
             }
           />
         </Routes>
-        <Footer />
+        <Footer /> {/* Always at the bottom */}
       </div>
     </Router>
   );
