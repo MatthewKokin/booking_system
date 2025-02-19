@@ -31,6 +31,40 @@ body, html {
   font-weight: bold;
 }
 
+/* Register.css */
+.register, .login {
+  padding: 50px;
+  height: 59.5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.register form, .login form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers form elements */
+  width: 100%;
+}
+
+.register input, .login input {
+  width: 400px;
+  padding: 15px;
+  margin-bottom: 5vh;
+}
+
+.register button {
+  background-color: aquamarine;
+  font-weight: bold;
+  padding: 20px 50px;
+}
+
+.login button {
+  background-color: gold;
+  font-weight: bold;
+  padding: 20px 50px;
+}
+
 /* Main properties screen */
 .property-list {
   display: grid;
