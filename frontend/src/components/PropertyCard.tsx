@@ -10,9 +10,10 @@ interface Property {
 
 interface Props {
   property: Property;
+  onBook: () => void;
 }
 
-const PropertyCard: React.FC<Props> = ({ property }) => {
+const PropertyCard: React.FC<Props> = ({ property, onBook }) => {
   return (
     <div className="property-card">
       <div className="image-wrapper">
@@ -22,6 +23,7 @@ const PropertyCard: React.FC<Props> = ({ property }) => {
         <h2>{property.title}</h2>
         <p>{property.location}</p>
         <p className="price">${property.price} / night</p>
+        <button onClick={onBook}>Book</button>
       </div>
     </div>
   );
