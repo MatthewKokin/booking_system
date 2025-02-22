@@ -20,7 +20,6 @@ def users():
         cursor.execute('SELECT * FROM property')
         rows = cursor.fetchall()
         
-        # If rows are found, return them as JSON
         if rows:
             return jsonify(rows), 200
         else:
@@ -41,26 +40,6 @@ if __name__ == '__main__':
 
 
 '''
-Accounts
-- userID
-- Name
-- Surname
-- email
-- verified
-- 
-
-Listings
-- id 
-- title
-- location
-- description
-- img source
-- created at 
-- updated at
-- userid
-
-------------------------
-
 1. Users
 - UserID (Primary Key)
 - Username
