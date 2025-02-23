@@ -7,10 +7,11 @@ app = Flask(__name__)
 cors= CORS(app, origins="*")
 
 con = mysql.connector.connect(
-    host = 'localhost',
+    host = 'mysql-compose-container',
     user = 'root',
-    password = '123',
-    database = 'booking_system'
+    password = 'password',
+    database = 'booking_system',
+    port = "3306"
 )
 
 @app.route('/api/users', methods=['GET'])
