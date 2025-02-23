@@ -23,7 +23,7 @@ def users():
     con = get_db_connection()  # Get a fresh connection for each request
     try:
         cursor = con.cursor(dictionary=True)
-        cursor.execute('SELECT NOW() AS time')
+        cursor.execute('SELECT * FROM users')
         rows = cursor.fetchall()
 
         if rows:

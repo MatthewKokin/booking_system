@@ -9,8 +9,8 @@ services:
       - "3306:3306"
     networks:
       - backend-network
-    # volumes:
-      # - ./sql_script:/docker-entrypoint-initdb.d
+    volumes:
+      - ./database/initialise_database.sql:/docker-entrypoint-initdb.d/initialise_database.sql
 
   flask_backend:
     build: .
