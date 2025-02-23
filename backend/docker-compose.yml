@@ -1,0 +1,30 @@
+services:
+  mysql:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_DATABASE: mydatabase
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    networks:
+      - backend-network
+    # volumes:
+      # - ./sql_script:/docker-entrypoint-initdb.d
+
+  flask_backend:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_DB: mydatabase
+    networks:
+      - backend-network
+
+networks:
+  backend-network:
