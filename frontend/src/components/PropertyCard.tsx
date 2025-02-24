@@ -6,6 +6,7 @@ interface Property {
   location: string;
   price: number;
   imageUrl: string;
+  bookedDates: Date[];
 }
 
 interface Props {
@@ -23,7 +24,10 @@ const PropertyCard: React.FC<Props> = ({ property, onBook }) => {
         <h2>{property.title}</h2>
         <p>{property.location}</p>
         <p className="price">${property.price} / night</p>
-        <button onClick={onBook}>Book</button>
+        {/* Wrapper for the book button */}
+        <div className="book-button-wrapper">
+          <button onClick={onBook}>Book</button>
+        </div>
       </div>
     </div>
   );
