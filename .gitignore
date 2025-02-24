@@ -28,3 +28,6 @@ lerna-debug.log*
 
 # Local configuration files
 *.local
+
+# Cogitation
+thoughts.txt
