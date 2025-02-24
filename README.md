@@ -10,3 +10,9 @@ Running backend:
 - Make sure to install Flask-CORS (`pip install Flask-CORS` for Windows and `pip3 install Flask-CORS` for Mac)
 - Run the server: `python app.py` for Windows and `python3 app.py` for Mac
 - Open `http://127.0.0.1:8080/api/users` to see different users
+
+Running backend with docker
+- Install docker
+- Pick the server directory: `cd backend`
+- Use `docker-compose up --build` to build app.py and start mysql server
+- Go to `http://127.0.0.1:8080/api/users` to see data displayed from the database
