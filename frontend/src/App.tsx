@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 // Navigation amongst the screens
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 // Components
 import Navbar from './components/Navbar';
@@ -9,7 +9,6 @@ import PropertyCard from './components/PropertyCard';
 import Footer from './components/Footer';
 
 // Screens
-import Onboarding from './pages/Onboarding';
 import Login from './pages/Login';
 import Register from './pages/Register';
 
@@ -76,6 +75,7 @@ const App: React.FC = () => {
 
   // *** BACKEND API INSERTION POINT! *** (UPLOAD BOOKING FOR SPECIFIC PROPERTY)
   const handleBookProperty = (propertyId: number, dates: Date[]) => { // for updating the calendar dates
+    if (isAuthenticated) {
     setProperties(properties.map(property =>
       property.id === propertyId ? {
         ...property,
@@ -83,52 +83,47 @@ const App: React.FC = () => {
       } : property
     ));
     setShowBookingModal(null); // close the booking modal after booking
+  } else {
+    alert('Please login to book a property.'); // if not logged in, show an alert
+  }
   };
 
   return (
-    <Router>
       <div className="App">
-        <Navbar />
+        <Navbar searchQuery={searchQuery} handleSearchChange={handleSearchChange} />
         <Routes>
-          <Route path="/" element={<Onboarding />} />
-          <Route path="/login" element={<Login setAuth={setIsAuthenticated} />} />
-          <Route path="/register" element={<Register setAuth={setIsAuthenticated} />} />
           <Route 
-            path="/properties" 
+            path="/" 
             element={
-              isAuthenticated ? ( // open property screen only if authenticated
-                <div>
-                  {/* Search bar and Upload button */}
-                  <div className="search-bar"> 
-                    <input type="text" placeholder="Search properties..." value={searchQuery} onChange={handleSearchChange} />
-                    <button onClick={() => setShowUploadForm(!showUploadForm)}>Upload Property</button>
-                  </div>
-
-                  {/* Show upload form if boolean set to true */}
-                  {showUploadForm && <UploadForm onSubmit={handleUploadProperty} />}
-                  
-                  {/* Display all properties */}
-                  <div className="property-list">
-                    {filteredProperties.map((property) => (
-                    <PropertyCard
-                      key={property.id} 
-                      property={property} 
-                      onBook={() => setShowBookingModal(property.id)} /> // pass property to the function to open customised modal
-                    ))}
-                  </div>
-
-                  {/* Show booking modal if boolean set to true */}
-                  {showBookingModal && <BookingModal property={properties.find(p => p.id === showBookingModal)!} onClose={() => setShowBookingModal(null)} onBook={handleBookProperty} />}
+              <div>
+                {/* Search bar and Upload button */}
+                <div className="upload-button"> 
+                  <button onClick={() => setShowUploadForm(!showUploadForm)}>Upload Property</button>
                 </div>
-              ) : (
-                <Navigate to="/" replace /> // prevent skipping past security by redirecting to onboarding if not authenticated
-              )
+
+                {/* Show upload form if boolean set to true */}
+                {showUploadForm && <UploadForm onSubmit={handleUploadProperty} />}
+                  
+                {/* Display all properties */}
+                <div className="property-list">
+                  {filteredProperties.map((property) => (
+                  <PropertyCard
+                    key={property.id} 
+                    property={property} 
+                    onBook={() => setShowBookingModal(property.id)} /> // pass property to the function to open customised modal
+                  ))}
+                </div>
+
+                {/* Show booking modal if boolean set to true */}
+                {showBookingModal && <BookingModal property={properties.find(p => p.id === showBookingModal)!} onClose={() => setShowBookingModal(null)} onBook={handleBookProperty} />}
+              </div>
             }
           />
+          <Route path="/login" element={<Login setAuth={setIsAuthenticated} />} />
+          <Route path="/register" element={<Register setAuth={setIsAuthenticated} />} />
         </Routes>
         <Footer />
       </div>
-    </Router>
   );
 };
 

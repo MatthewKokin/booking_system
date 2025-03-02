@@ -16,7 +16,7 @@ const Login: React.FC<LoginProps> = ({ setAuth }) => {
     // *** Backend authentication logic goes here ***
     if (email === 'test@example.com' && password === 'password') {
       setAuth(true);
-      navigate('/properties');
+      navigate('/');
     } else {
       alert('Invalid credentials');
     }

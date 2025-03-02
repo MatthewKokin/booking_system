@@ -1,12 +1,18 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
+// Entry point of the React application.
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom'; // Enables routing
+import App from './App.tsx';
+import './index.css'; // Global stylings
 
-// react-router-dom installed for page navigation
+// Get the root element from the HTML file
+const rootElement = document.getElementById('root');
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
+// Initialise and render the React application
+createRoot(rootElement!).render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>
 )
